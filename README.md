@@ -6,4 +6,4 @@ This program first converts infix notation to postfix notation and applies the C
 and Abstract Factory design patterns to evaluate the solution.
 
 **For simplification of parsing, this current version requires a space between each input
-element.
+element.**

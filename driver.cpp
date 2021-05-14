@@ -11,6 +11,9 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 bool checkforop(std::string& token);
 Command* chooseOp(std::string, Stack_Command_Factory);
 int evalPostfix(Queue<Command*> commands, Stack_Command_Factory& factory);
+
+
+
 int main() {
 	std::string infix = "";
 	std::string postfixstr;
@@ -26,17 +29,22 @@ int main() {
 	while (continueloop==true)
 	{
 		
+		
+		//Gets the input as infix notation
 		std::getline(std::cin, infix);
 		std::size_t entry = infix.find_first_not_of("0123456789+-*/%() ");
 		
 		try
 		{
+			
+			//check for input to quit program
 			if (infix == "QUIT" || infix == "quit" )
 				continueloop = false;
 				
-		
-			else if (entry != std::string::npos)  //if entry contains other data throw error
-
+			
+			
+			//if entry contains other data throw error
+			else if (entry != std::string::npos)  
 				throw std::logic_error("Invalid Expression\n");
 
 			else {
@@ -59,6 +67,14 @@ int main() {
 
 
 }
+
+
+
+
+/***
+Function for transforming infix notation to postfix notation
+
+***/
 Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory factory)
 {
 
@@ -66,6 +82,8 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 	Queue <Command*> commands;
 	Stack <Command*> operations;
 	Stack <int> operand;
+	
+	
 	std::string word;
 	std::istringstream input(infix);
 	std::string token;
@@ -78,8 +96,12 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 		input >> token;
 		try
 		{
-			if (token != "(" && checkforop(token) && commands.is_empty()) //if first token is operator throw error
+			
+			
+			//if first token is operator throw error
+			if (token != "(" && checkforop(token) && commands.is_empty()) 
 				throw std::logic_error("Syntax Error");
+			
 		}
 		catch (std::logic_error e)
 		{
@@ -88,9 +110,9 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 		}
 
 
-
+		//check for operand
 		if (!checkforop(token) && token != ")")
-		{  //check for operand
+		{  
 
 			intver = stoi(token);
 			cmd = factory.create_Num_Command(intver);
@@ -98,7 +120,9 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 			commands.enqueue(cmd);
 
 		}
-		else if (checkforop(token))  //check for operation
+		
+		//check for operation
+		else if (checkforop(token))  
 		{
 			cmd = chooseOp(token, factory);
 			if (operations.is_empty() || (operations.top()->precedOf() > cmd->precedOf())) //if top is lower prec
@@ -132,7 +156,10 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 			operations.pop();
 		}
 	}
-	while (!operations.is_empty())  //pop to queue until stack is empty
+	
+	
+	//pop to queue until stack is empty
+	while (!operations.is_empty())  
 	{
 		commands.enqueue(operations.top());
 		operations.pop();
@@ -141,6 +168,7 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 }
 
 
+//check to see if token is an operation
 bool checkforop(std::string& token)
 {
 	if (token == "+" || token == "-" || token == "*" || token == "/" || token == "%" || token == "(") {
@@ -170,6 +198,7 @@ Command* chooseOp(std::string token, Stack_Command_Factory factory)
 }
 
 
+//function to evaluate the postfix expression
 int evalPostfix(Queue<Command*> commands, Stack_Command_Factory& factory)
 {
 	Stack<int> s;

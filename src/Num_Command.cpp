@@ -25,5 +25,5 @@ int Num_Command::precedOf(void)
  std::string Num_Command::symb(void)
 {
 	
-	return ("5");//not relevant for num command
+	return ("5");
 }

@@ -129,7 +129,8 @@ Queue<Command*> infix_to_postfix(const std::string& infix, Stack_Command_Factory
 				operations.push(cmd);
 			else
 			{
-				while (!operations.is_empty() && operations.top()->symb() != "(" && operations.top()->precedOf() <= cmd->precedOf()) //if top is higher prec
+				while (!operations.is_empty() && operations.top()->symb() != "(" 
+				       && operations.top()->precedOf() <= cmd->precedOf()) //if top is higher prec
 				{
 					if (cmd->symb() == "(")
 						operations.push(cmd);

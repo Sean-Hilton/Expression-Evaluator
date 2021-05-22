@@ -1,14 +1,4 @@
-// -*- C++ -*-
-// $Id: Stack.h 380 2010-02-08 05:10:33Z hillj $
 
-//==============================================================================
-/**
- * Honor Pledge: Sean Hilton
- *
- * I pledge that I have neither given nor received any help
- * on this assignment.
- */
- //==============================================================================
 
 #ifndef _CS507_STACK_H_
 #define _CS507_STACK_H_
@@ -75,7 +65,7 @@ public:
 	const Stack& operator = (const Stack& rhs);
 
 	/**
-	 * Push a new \a element onto the stack. The element is inserted
+	 * Push a new  element onto the stack. The element is inserted
 	 * before all the other elements in the list.
 	 *
 	 * @param[in]      element       Element to add to the list

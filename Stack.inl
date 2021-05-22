@@ -1,5 +1,4 @@
-// -*- C++ -*-
-// $Id: Stack.inl 827 2011-02-07 14:20:53Z hillj $
+
 
 
 #include "Stack.h"

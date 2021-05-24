@@ -10,3 +10,8 @@ For simplification of parsing, this current version requires a space between eac
 element.
 
 type quit to exit
+
+# What I learned
+
+* Organization of design patterns (Command,Abstract Factory)
+* Memory management  
